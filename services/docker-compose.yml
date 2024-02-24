@@ -1,13 +1,18 @@
-version: '3.9'
+version: "3.1"
 
 services:
-  postgres:
-    image: postgres:14-alpine
-    ports:
-      - 5432:5432
-    volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres_groop
     environment:
-      - POSTGRES_PASSWORD=password_devs
-      - POSTGRES_USER=user_dev
-      - POSTGRES_DB=groop_dev
+      POSTGRES_USER: groop
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: groop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

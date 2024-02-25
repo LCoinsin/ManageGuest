@@ -5,14 +5,16 @@ import { Button } from "@/components/ui/button";
 
 export const Navbar = () => {
   return (
-    <div className="flex h-20 w-full items-center border-b-2 px-5 align-middle">
-      <div className="flex w-full justify-start">
-        <h1 className="text-3xl">
-          <Link href="/">Groop</Link>
-        </h1>
-      </div>
-      <div className="flex w-full flex-row items-center justify-end">
-        <AuthButton />
+    <div className="flex h-20 w-full items-center justify-center border-b-2 px-5 align-middle">
+      <div className="flex w-full max-w-7xl flex-row justify-between">
+        <div className="flex w-full justify-start">
+          <h1 className="text-3xl">
+            <Link href="/">Groop</Link>
+          </h1>
+        </div>
+        <div className="flex w-full flex-row items-center justify-end">
+          <AuthButton />
+        </div>
       </div>
     </div>
   );
@@ -24,8 +26,8 @@ const AuthButton = () => {
   if (session) {
     return (
       <>
-        {session?.user?.name}
-        <Button onClick={() => signOut()}>Sign out</Button>s
+        {/* Hello {session?.user?.name} */}
+        <Button onClick={() => signOut()}>Sign out</Button>
       </>
     );
   }

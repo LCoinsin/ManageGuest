@@ -22,10 +22,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className + "h-screen"}>
         <SessionProvider session={session}>
-          <main>
+          <div className="">
             <Navbar />
             {children}
-          </main>
+          </div>
         </SessionProvider>
       </body>
     </html>

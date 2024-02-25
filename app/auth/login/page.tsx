@@ -25,24 +25,17 @@ const signin = () => {
   const onSubmit = async (data) => {
     const { email, password } = data;
     const result = await signIn("credentials", {
-      redirect: false,
+      redirect: true,
+      callbackUrl: "/hub",
       email,
       password,
     });
-
-    // if (result.error) {
-    //   // Gérer l'erreur de connexion
-    //   console.error(result.error);
-    // } else {
-    //   // Rediriger l'utilisateur après une connexion réussie
-    //   window.location.href = "/";
-    // }
   };
 
   return (
-    <div className="flex h-full items-center justify-center">
+    <div className="flex h-full items-center justify-center py-20">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card className="min-w-80 max-w-96">
+        <Card className="min-w-[24rem] px-8">
           <CardHeader>
             <CardTitle>Glad to have you back</CardTitle>
             <CardDescription>Welcome back</CardDescription>

@@ -33,22 +33,13 @@ const register = () => {
 
     const userInfo = await result.json();
     console.log(userInfo);
-    // router.push("/auth/login");
-
-    // const result = await registerUser(data);
-    // if (result.success) {
-    //   // Rediriger vers la page de connexion ou de succès après l'inscription
-    //   router.push("/auth/signin");
-    // } else {
-    //   // Gérer l'erreur d'inscription
-    //   console.error("Échec de l'inscription");
-    // }
+    router.push("/auth/login");
   };
 
   return (
-    <div className="flex h-full items-center justify-center">
+    <div className="flex h-full items-center justify-center py-20">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Card className="min-w-80 max-w-96">
+        <Card className="min-w-[24rem] px-8">
           <CardHeader>
             <CardTitle>Register</CardTitle>
           </CardHeader>

@@ -1,9 +1,9 @@
 import NextAuth from "next-auth/next";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { prisma } from "./prisma";
+import { prisma } from "@/lib/prisma";
 
-export const { auth, handler } = NextAuth({
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -13,8 +13,7 @@ export const { auth, handler } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const user = { id: "1", name: "Jo", email: "jsmith@example.com" };
-
+        const user = { id: "1", name: "test", email: "test@test.com" };
         if (user) {
           return user;
         } else {
@@ -23,4 +22,15 @@ export const { auth, handler } = NextAuth({
       },
     }),
   ],
-});
+  session: {
+    strategy: "jwt",
+  },
+  pages: {
+    signIn: "/auth/signin",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
+};
+
+export const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };

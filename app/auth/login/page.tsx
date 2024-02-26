@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@radix-ui/react-dropdown-menu";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
@@ -26,49 +27,86 @@ const signin = () => {
     const { email, password } = data;
     const result = await signIn("credentials", {
       redirect: true,
-      callbackUrl: "/hub",
+      callbackUrl: "/home/hub",
       email,
       password,
     });
   };
 
   return (
-    <div className="flex h-full items-center justify-center py-20">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Card className="min-w-[24rem] px-8">
-          <CardHeader>
-            <CardTitle>Glad to have you back</CardTitle>
-            <CardDescription>Welcome back</CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            {/* <Input placeholder="Email" type="email" /> */}
-            <Input
-              {...register("email", { required: "Email must be required" })}
-              type="email"
-              placeholder="Email"
+    <div className="flex h-screen w-full justify-center">
+      <div className="flex w-full max-w-7xl">
+        <div className=" flex-1 flex justify-center">
+          <div className="bg-red-100 flex-1 m-5 rounded-2xl overflow-hidden relative">
+            <img
+              src="https://images.unsplash.com/photo-1604076850742-4c7221f3101b?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="max-w-full h-auto object-cover"
             />
-            {/* {errors.email && <p>{errors.email.message}</p>} */}
-
-            {/* <Input placeholder="Password" type="password" /> */}
-            <Input
-              {...register("password", {
-                required: "The password must be required",
-              })}
-              type="password"
-              placeholder="Password"
-            />
-            {/* {errors.password && <p>{errors.password.message}</p>} */}
-          </CardContent>
-          <CardFooter className="flex flex-col gap-2">
-            <Button type="submit" className="w-full">
-              Sign in
-            </Button>
-            <Button asChild variant="link" className="text-sm">
-              <Link href="/auth/register">Sign Up</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-      </form>
+            <div className="absolute inset-0 flex items-start justify-start pl-4 pt-4">
+              <div className="flex flex-row items-center">
+                <p className="text-white text-4xl font-bold">Groop</p>
+                <div className="w-2" />
+                <div className="h-0.5 bg-white w-40 rounded-lg" />
+              </div>
+            </div>
+            <div className="absolute inset-0 flex items-end justify-start pl-4 pb-4">
+              <p className="text-white text-4xl font-bold">
+                Predict <br />
+                Organize <br /> Make your groop better
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 flex justify-center items-center ">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-8 w-2/3"
+          >
+            <div className="flex flex-col gap-2">
+              <h1 className="text-4xl">Welcome back !</h1>
+              <h1 className="text-sm">
+                Enter your email and your password to access to your account
+              </h1>
+            </div>
+            <div className="flex flex-col w-full gap-4">
+              <div className="grid w-full items-center gap-1.5 ">
+                <Label htmlFor="email" className="text-sm">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  {...register("email", { required: "Email must be required" })}
+                  type="email"
+                  placeholder="Enter your email"
+                  className=""
+                />
+              </div>
+              <div className="grid w-full items-center gap-1.5">
+                <Label htmlFor="password" className="text-sm">
+                  Password
+                </Label>
+                <Input
+                  id="password"
+                  {...register("password", {
+                    required: "The password must be required",
+                  })}
+                  type="password"
+                  placeholder="Enter your password"
+                  className="w-full"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <Button type="submit" className="w-full">
+                Sign in
+              </Button>
+              <Button asChild variant="link" className="text-sm">
+                <Link href="/auth/register">Sign Up</Link>
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

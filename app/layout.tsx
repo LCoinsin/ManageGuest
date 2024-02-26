@@ -3,14 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProviders";
-import Navbar from "./components/NavBar";
+import Navbar from "./home/components/NavBar";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Groop",
-  description: "Guest management site for events",
-};
 
 export default async function RootLayout({
   children,
@@ -23,10 +18,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
-          <main className="h-screen">
-            <Navbar />
-            {children}
-          </main>
+          <main className="h-screen">{children}</main>
         </SessionProvider>
       </body>
     </html>

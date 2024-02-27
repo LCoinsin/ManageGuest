@@ -17,7 +17,7 @@ import { LogOut } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <div className="flex h-20 w-full items-center justify-center border-b-2 px-5 align-middle">
+    <div className="flex h-20 w-full items-center justify-center border-b-2 px-5 align-middle bg-white">
       <div className="flex w-full max-w-7xl flex-row justify-between">
         <div className="flex w-full justify-start">
           <h1 className="text-3xl">

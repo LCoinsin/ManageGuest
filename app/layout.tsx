@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins, Rubik } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProviders";
-import Navbar from "./home/components/NavBar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Rubik({
+  subsets: ["latin"],
+  weight: "300",
+});
+
+export const metadata: Metadata = {
+  title: "Groop",
+  description: "Guest website management",
+};
 
 export default async function RootLayout({
   children,

@@ -6,9 +6,9 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main>
+    <main className="flex flex-col items-center">
       <Navbar />
-      {children}
+      <div className="w-full max-w-7xl">{children}</div>
     </main>
   );
 }

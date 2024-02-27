@@ -1,13 +1,6 @@
 "use client";
 
-import { getServerSession } from "next-auth";
-import {
-  GetSessionParams,
-  getSession,
-  signIn,
-  useSession,
-} from "next-auth/react";
-import { redirect } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 
 export default function ProtectedPage() {
   const { data: session, status } = useSession({
@@ -18,13 +11,18 @@ export default function ProtectedPage() {
   });
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
-    <div>
+    <div className="flex justify-center bg-red-200 max-w-7xl">
       <h1>Page protégée</h1>
       <p>Bienvenue, {session?.user?.email}</p>
+      <GridGroop />
     </div>
   );
+}
+
+function GridGroop() {
+  return <div>Grid groop</div>;
 }

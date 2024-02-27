@@ -37,7 +37,10 @@ function AuthButton() {
 
   if (session) {
     return (
-      <>
+      <div className="flex flex-row gap-2">
+        <Button variant="link" asChild>
+          <Link href="/home/hub">Hub</Link>
+        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar>
@@ -68,11 +71,7 @@ function AuthButton() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        {/* TODO : Regler le probleme du signOut bloqué quand je suis sur une route protégé */}
-        {/* <Button onClick={() => signOut({ redirect: true, callbackUrl: "/" })}>
-          Sign out
-        </Button> */}
-      </>
+      </div>
     );
   }
   return (
